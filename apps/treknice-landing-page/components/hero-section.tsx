@@ -81,7 +81,7 @@ export function HeroSection() {
               <br />
               <span className="italic font-light">
                 <AnimatedText
-                  text="Trekking và khám phá thiên nhiên"
+                  text="Khám phá vẻ đẹp thiên nhiên bất tận"
                   delay={1.1}
                 />
               </span>
@@ -127,8 +127,7 @@ export function HeroSection() {
                 ease: [0.21, 0.47, 0.32, 0.98],
               }}
             >
-              Thoát khỏi nhịp sống đô thị, hòa mình vào rừng núi và không gian
-              xanh bất tận.
+              Trải nghiệm trekking, hòa mình vào thiên nhiên nguyên sơ.
             </motion.p>
           </Reveal>
         </div>

@@ -60,7 +60,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="bg-white/[0.02] border-t border-white/[0.02]">
+    <footer className="py-6 px-4 bg-white/2 border-t border-white/2">
       <div className="container-custom py-16 lg:py-20">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 mb-12">

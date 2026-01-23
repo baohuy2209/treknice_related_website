@@ -7,35 +7,44 @@ import { Check, Mail } from "lucide-react";
 import { Reveal } from "./reveal";
 import { BlurPanel } from "./blur-panel";
 import { AnimatedText } from "./animated-text";
+import { subscribeToNewsletter } from "@/actions/newsletter";
 
 export function NewsletterSection() {
   const [email, setEmail] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isValid, setIsValid] = useState(true);
-
+  const [error, setError] = useState("");
   const validateEmail = (email: string) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    console.log(email);
     return re.test(email);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (validateEmail(email)) {
-      setIsSubmitted(true);
-      setIsValid(true);
+      subscribeToNewsletter(email).then(async (data) => {
+        if (data.success) {
+          setIsSubmitted(true);
+          setIsValid(true);
+        } else {
+          setIsSubmitted(false);
+          setError(data.message);
+        }
+      });
     } else {
       setIsValid(false);
     }
   };
 
   return (
-    <section className="py-20 lg:py-32">
+    <section className="py-20 lg:py-32 bg-white/40 backdrop-blur-md grain-texture">
       <div className="container-custom">
         <Reveal>
           <div className="max-w-2xl mx-auto">
-            <BlurPanel className="p-8 lg:p-12 bg-white/40 backdrop-blur-md grain-texture">
+            <BlurPanel className="p-8 lg:p-12 bg-white/40 backdrop-blur-md">
               <div className="text-center mb-8">
-                <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4">
+                <h2 className="text-3xl lg:text-4xl font-bold text-neutral-900 mb-4 ">
                   <AnimatedText text="Luôn đồng hành " delay={0.2} />
                   <span className="italic font-light whitespace-nowrap">
                     <AnimatedText text="trong mọi chuyến đi." delay={0.5} />
@@ -54,6 +63,8 @@ export function NewsletterSection() {
                       <Mail size={20} className="text-neutral-400" />
                     </div>
                     <input
+                      id="email"
+                      name="email"
                       type="email"
                       value={email}
                       onChange={(e) => {
@@ -68,7 +79,16 @@ export function NewsletterSection() {
                       }`}
                     />
                   </div>
-
+                  {error && (
+                    <motion.p
+                      className="text-sm text-red-600 text-center"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {error}
+                    </motion.p>
+                  )}
                   {!isValid && (
                     <motion.p
                       className="text-sm text-red-600 text-center"
