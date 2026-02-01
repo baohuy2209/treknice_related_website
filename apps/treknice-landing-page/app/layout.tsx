@@ -26,13 +26,13 @@ export const metadata: Metadata = {
     url: "https://treknice.example/",
     images: [
       {
-        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/opengraph-katachi.jpg-7vz2r3hxZA6woukGOmH115Fg7Piyjs.jpeg",
-        alt: "TrekNice design furniture — timeless pieces, architected in Belgium",
+        url: "/hero-section/image1.png",
+        alt: "TrekNice - Trang bị cho trekking và đi phượt.",
         width: 1200,
         height: 630,
       },
     ],
-    locale: "en_BE",
+    locale: "vi_VN",
   },
   twitter: {
     card: "summary_large_image",
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
       "TrekNice – Trang bị cho trekking và đi phượt, được thiết kế để đồng hành cùng bạn trên mọi cung đường.",
     images: [
       {
-        url: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/opengraph-katachi.jpg-7vz2r3hxZA6woukGOmH115Fg7Piyjs.jpeg",
-        alt: "TrekNice – Trang bị cho trekking và đi phượt, được thiết kế để đồng hành cùng bạn trên mọi cung đường.",
+        url: "/hero-section/image1.png",
+        alt: "TrekNice - Trang bị cho trekking và đi phượt.",
       },
     ],
     site: "@treknice",
