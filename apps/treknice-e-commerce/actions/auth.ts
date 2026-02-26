@@ -5,7 +5,7 @@ import {
 } from "@oslojs/encoding";
 import { sha256 } from "@oslojs/crypto/sha2";
 
-import type { User, Session } from "../lib/generated/prisma/client";
+import type { User, Session } from "@//lib/generated/prisma/client";
 import prisma from "@/lib/prisma";
 import { cookies } from "next/headers";
 import { cache } from "react";
