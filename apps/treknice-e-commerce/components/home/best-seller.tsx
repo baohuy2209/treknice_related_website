@@ -1,7 +1,51 @@
-import React from "react";
+// components/BestSellers.tsx
 
-function BestSeller() {
-  return <div>BestSeller</div>;
+import Link from "next/link";
+import { products } from "@/data/products";
+import ProductCard from "@/components/product/product-card";
+
+export default function BestSellers() {
+  const bestSellers = products.filter((p) => p.isBestSeller).slice(0, 4);
+
+  return (
+    <section className="py-20 bg-neutral-100">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Header */}
+        <div className="flex items-end justify-between mb-14">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-neutral-900">
+              Sản Phẩm Bán Chạy
+            </h2>
+            <p className="mt-4 text-neutral-600 text-lg">
+              Được cộng đồng TrekNice tin dùng trên mọi hành trình
+            </p>
+          </div>
+
+          <Link
+            href="/products"
+            className="hidden sm:inline-block text-sm font-semibold text-emerald-600 hover:text-black transition uppercase tracking-wider"
+          >
+            Xem tất cả →
+          </Link>
+        </div>
+
+        {/* Products Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {bestSellers.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+
+        {/* Mobile Button */}
+        <div className="mt-10 text-center sm:hidden">
+          <Link
+            href="/products"
+            className="inline-block border border-emerald-600 text-emerald-600 px-6 py-3 rounded-full font-medium hover:bg-emerald-600 hover:text-white transition"
+          >
+            Xem tất cả sản phẩm
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
 }
-
-export default BestSeller;

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ShoppingBag, Menu, X } from "lucide-react";
 import { useCart } from "@/contexts/cart-context";
 import { usePathname } from "next/navigation";
-
+import Image from "next/image";
 const navLinks = [
   { to: "/", label: "Trang chủ" },
   { to: "/products", label: "Sản phẩm" },
@@ -17,13 +17,19 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <header className="w-[90%] mx-auto sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <nav className="container-page flex items-center justify-between h-16 sm:h-20">
+    <header className="w-full px-16 py-2 mx-auto sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+      <nav className="container-page flex items-center justify-between h-fit">
         <Link
           href="/"
           className="font-display text-2xl sm:text-3xl font-semibold tracking-tight text-foreground"
         >
-          TrekNice
+          <Image
+            src="/logo-treknice.png"
+            alt="Treknice"
+            className="rounded-full"
+            width={50}
+            height={50}
+          />
         </Link>
 
         {/* Desktop nav */}

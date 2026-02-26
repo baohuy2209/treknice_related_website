@@ -1,8 +1,189 @@
-"use client";
-import React from "react";
+// components/Footer.tsx
+import Link from "next/link";
+import { Instagram, Facebook } from "lucide-react";
+import Image from "next/image";
+export default function Footer() {
+  return (
+    <footer className="bg-neutral-100 border-t border-neutral-200">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+          <div>
+            <Link
+              href="/"
+              className="flex items-center gap-0.5 text-2xl font-semibold text-neutral-900"
+            >
+              <Image
+                src="/logo-treknice.png"
+                alt="Treknice"
+                className="rounded-full"
+                width={100}
+                height={100}
+              />
+              <span>TrekNice</span>
+            </Link>
 
-function Footer() {
-  return <div>Footer</div>;
+            <p className="mt-4 text-sm text-neutral-600 leading-relaxed max-w-xs">
+              Trang bị phụ kiện chất lượng cho mọi hành trình khám phá. Đồng
+              hành cùng bạn trên từng cung đường – từ rừng núi đến biển xa.
+            </p>
+
+            <div className="flex gap-4 mt-6 text-neutral-500">
+              <Link href="#">
+                <Instagram
+                  size={18}
+                  className="hover:text-emerald-600 transition"
+                />
+              </Link>
+              <Link href="#">
+                <Facebook
+                  size={18}
+                  className="hover:text-emerald-600 transition"
+                />
+              </Link>
+              <svg
+                fill="#000000"
+                viewBox="0 0 32 32"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-4 h-4 hover:text-emerald-600 transition"
+              >
+                <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  {" "}
+                  <title>tiktok</title>{" "}
+                  <path d="M16.656 1.029c1.637-0.025 3.262-0.012 4.886-0.025 0.054 2.031 0.878 3.859 2.189 5.213l-0.002-0.002c1.411 1.271 3.247 2.095 5.271 2.235l0.028 0.002v5.036c-1.912-0.048-3.71-0.489-5.331-1.247l0.082 0.034c-0.784-0.377-1.447-0.764-2.077-1.196l0.052 0.034c-0.012 3.649 0.012 7.298-0.025 10.934-0.103 1.853-0.719 3.543-1.707 4.954l0.020-0.031c-1.652 2.366-4.328 3.919-7.371 4.011l-0.014 0c-0.123 0.006-0.268 0.009-0.414 0.009-1.73 0-3.347-0.482-4.725-1.319l0.040 0.023c-2.508-1.509-4.238-4.091-4.558-7.094l-0.004-0.041c-0.025-0.625-0.037-1.25-0.012-1.862 0.49-4.779 4.494-8.476 9.361-8.476 0.547 0 1.083 0.047 1.604 0.136l-0.056-0.008c0.025 1.849-0.050 3.699-0.050 5.548-0.423-0.153-0.911-0.242-1.42-0.242-1.868 0-3.457 1.194-4.045 2.861l-0.009 0.030c-0.133 0.427-0.21 0.918-0.21 1.426 0 0.206 0.013 0.41 0.037 0.61l-0.002-0.024c0.332 2.046 2.086 3.59 4.201 3.59 0.061 0 0.121-0.001 0.181-0.004l-0.009 0c1.463-0.044 2.733-0.831 3.451-1.994l0.010-0.018c0.267-0.372 0.45-0.822 0.511-1.311l0.001-0.014c0.125-2.237 0.075-4.461 0.087-6.698 0.012-5.036-0.012-10.060 0.025-15.083z"></path>{" "}
+                </g>
+              </svg>
+            </div>
+          </div>
+
+          {/* Shop */}
+          <div>
+            <h4 className="font-semibold text-neutral-900 mb-4">Cửa hàng</h4>
+            <ul className="space-y-3 text-sm text-neutral-600">
+              <li>
+                <Link
+                  href="/products"
+                  className="hover:text-neutral-900 transition"
+                >
+                  Tất cả các sản phẩm
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?category=Bath+%26+Body"
+                  className="hover:text-neutral-900 transition"
+                >
+                  Balo & túi chống nước
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?category=Home"
+                  className="hover:text-neutral-900 transition"
+                >
+                  Phụ kiện đi kèm
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?category=Accessories"
+                  className="hover:text-neutral-900 transition"
+                >
+                  Phụ kiện
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 className="font-semibold text-neutral-900 mb-4">Về TrekNice</h4>
+            <ul className="space-y-3 text-sm text-neutral-600">
+              <li>
+                <Link
+                  href="/blog"
+                  className="hover:text-neutral-900 transition"
+                >
+                  Blog chia sẻ kinh nghiệm phượt
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about"
+                  className="hover:text-neutral-900 transition"
+                >
+                  Câu chuyện thương hiệu
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/sustainability"
+                  className="hover:text-neutral-900 transition"
+                >
+                  Cam kết chất lượng
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contact"
+                  className="hover:text-neutral-900 transition"
+                >
+                  Liên hệ
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Support */}
+          <div>
+            <h4 className="font-semibold text-neutral-900 mb-4">
+              Hỗ trợ khách hàng
+            </h4>
+            <ul className="space-y-3 text-sm text-neutral-600">
+              <li>
+                <Link
+                  href="/shipping"
+                  className="hover:text-neutral-900 transition"
+                >
+                  Chính sách vận chuyển
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="hover:text-neutral-900 transition">
+                  Câu hỏi thường gặp
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/privacy"
+                  className="hover:text-neutral-900 transition"
+                >
+                  Các chính sách
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/terms"
+                  className="hover:text-neutral-900 transition"
+                >
+                  Điều khoản sử dụng
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-neutral-200 mt-16 pt-8 text-center text-sm text-neutral-500">
+          © {new Date().getFullYear()} TrekNice. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  );
 }
-
-export default Footer;
