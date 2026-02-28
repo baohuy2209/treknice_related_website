@@ -1,9 +1,7 @@
-
+import SignIn from "@/components/auth/sign-in/sign-in";
 
 function SignInPage() {
-  return (
-    <SignIn />
-  )
+  return <SignIn />;
 }
 
-export default SignInPage
+export default SignInPage;
