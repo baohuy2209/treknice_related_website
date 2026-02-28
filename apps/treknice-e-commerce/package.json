@@ -11,7 +11,11 @@
     "db:generate": "pnpm dlx prisma init --db --output ./generated/prisma",
     "db:studio": "pnpm dlx prisma studio",
     "db:pull": "pnpm dlx prisma db pull",
-    "db:migrate": "pnpm dlx prisma migrate dev --name init"
+    "db:migrate": "pnpm dlx prisma migrate dev --name init",
+    "dev:sanity-studio": "pnpm dlx sanity dev",
+    "dev:sanity-deploy": "pnpm dlx sanity deploy",
+    "dev:sanity-schema": "pnpm dlx sanity schema extract",
+    "dev:sanity-typegen": "pnpm dlx sanity typegen generate"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.1",

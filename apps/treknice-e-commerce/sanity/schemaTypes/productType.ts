@@ -1,6 +1,23 @@
 import { DocumentTextIcon } from "@sanity/icons";
 import { defineArrayMember, defineField, defineType } from "sanity";
-
+import { formatVND } from "./index";
+export const colorProductVariant = defineType({
+  name: "colorProductVariant",
+  title: "Color Product Variant",
+  type: "object",
+  fields: [
+    defineField({
+      name: "colors",
+      title: "Colors",
+      type: "string",
+    }),
+    defineField({
+      name: "colorHex",
+      title: "Color Hex",
+      type: "string",
+    }),
+  ],
+});
 export const productType = defineType({
   name: "product",
   title: "Product",
@@ -36,6 +53,21 @@ export const productType = defineType({
       name: "num_sold",
       type: "number",
       initialValue: 0,
+    }),
+    defineField({
+      name: "colors",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "colorProductVariant",
+        }),
+      ],
+    }),
+    defineField({
+      name: "discountPercents",
+      title: "Discount Percents",
+      type: "number",
+      initialValue: 15,
     }),
     defineField({
       name: "mainImage",
@@ -97,13 +129,13 @@ export const productType = defineType({
   ],
   preview: {
     select: {
-      title: "title",
-      author: "author.name",
+      title: "name",
+      price: "price",
       media: "mainImage",
     },
     prepare(selection) {
-      const { author } = selection;
-      return { ...selection, subtitle: author && `by ${author}` };
+      const { price } = selection;
+      return { ...selection, subtitle: `${formatVND(price)}` };
     },
   },
 });
