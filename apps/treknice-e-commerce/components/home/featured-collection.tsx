@@ -51,22 +51,23 @@ export default function FeaturedCollections() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {collections.map((col) => (
             <Link
               key={col.title}
               href={col.link}
-              className="group relative overflow-hidden rounded-2xl aspect-4/5"
+              className="group relative overflow-hidden rounded-2xl aspect-square"
             >
               <Image
                 src={col.image}
                 alt={col.title}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                className="aspect-square object-contain transition-transform duration-700 group-hover:scale-110 w-full h-full"
               />
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition duration-300" />
+              <div className="absolute inset-0 bg-black/5 group-hover:bg-black/10 transition duration-300" />
 
               {/* Text */}
               <div className="absolute bottom-0 left-0 p-6 text-white">

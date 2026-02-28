@@ -5,6 +5,8 @@ import { ShoppingBag, Menu, X } from "lucide-react";
 import { useCart } from "@/contexts/cart-context";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { useSession } from "@/contexts/session-context";
+import UserAction from "@/components/layout/user-action";
 const navLinks = [
   { to: "/", label: "Trang chủ" },
   { to: "/products", label: "Sản phẩm" },
@@ -15,6 +17,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { totalItems } = useCart();
   const pathname = usePathname();
+  const user = useSession();
 
   return (
     <header className="w-full px-16 py-2 mx-auto sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
@@ -33,12 +36,12 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="w-full hidden md:flex items-center justify-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.to}
               href={link.to}
-              className={`text-sm font-medium tracking-wide uppercase transition-colors duration-200 ${
+              className={`text-sm font-medium tracking-wide text-nowrap uppercase transition-colors duration-200 ${
                 pathname === link.to
                   ? "text-primary"
                   : "text-muted-foreground hover:text-foreground"
@@ -61,7 +64,24 @@ const Navbar = () => {
               </span>
             )}
           </Link>
-
+          {user ? (
+            <UserAction user={user} />
+          ) : (
+            <div className="flex gap-1">
+              <Link
+                href="/auth/sign-up"
+                className="px-4 py-2 text-nowrap text-sm font-medium bg-[#f4f1ed] text-black rounded-lg hover:opacity-80 transition-colors shadow-sm"
+              >
+                Đăng kí
+              </Link>
+              <Link
+                href="/auth/sign-in"
+                className="px-4 py-2 text-nowrap text-sm font-medium border-[#f4f1ed] border text-black rounded-lg hover:bg-[#f4f1ed] transition-colors shadow-sm"
+              >
+                Đăng nhập
+              </Link>
+            </div>
+          )}
           <button
             className="md:hidden p-2 text-foreground"
             onClick={() => setMobileOpen(!mobileOpen)}

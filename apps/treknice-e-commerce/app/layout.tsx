@@ -7,6 +7,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { CartProvider } from "@/contexts/cart-context";
 import { Toaster } from "sonner";
 import Script from "next/script";
+import { getCurrentSession } from "@/actions/auth";
+import { SessionProvider } from "@/contexts/session-context";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -22,11 +24,12 @@ export const metadata: Metadata = {
   description: "Author By Nguyen Bao Huy",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { user } = await getCurrentSession();
   return (
     <html lang="en">
       <head>
@@ -49,14 +52,16 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <TooltipProvider>
-          <CartProvider>
-            <Navbar />
-            {children}
-            <Footer />
-            <Toaster />
-          </CartProvider>
-        </TooltipProvider>
+        <SessionProvider user={user}>
+          <TooltipProvider>
+            <CartProvider>
+              <Navbar />
+              {children}
+              <Footer />
+              <Toaster />
+            </CartProvider>
+          </TooltipProvider>
+        </SessionProvider>
       </body>
     </html>
   );

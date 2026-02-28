@@ -9,6 +9,8 @@ import type { User, Session } from "@/lib/generated/prisma/client";
 import prisma from "@/lib/prisma";
 import { cookies } from "next/headers";
 import { cache } from "react";
+import z from "zod";
+import { LoginSchema, RegisterSchema } from "@/schemas";
 
 export async function generateSessionToken(): Promise<string> {
   const bytes = new Uint8Array(20);
@@ -20,6 +22,7 @@ export async function createSession(
   token: string,
   userId: string,
 ): Promise<Session> {
+  console.log(token);
   const sessionId = encodeHexLowerCase(sha256(new TextEncoder().encode(token)));
   const session: Session = {
     id: sessionId,
@@ -86,7 +89,7 @@ export async function setSessionTokenCookie(
   expiresAt: Date,
 ): Promise<void> {
   const cookieStore = await cookies();
-  cookieStore.set("session_token", token, {
+  cookieStore.set("session", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
@@ -124,16 +127,43 @@ export const verifyPassword = async (password: string, hash: string) => {
   const passwordHash = await hashPassword(password);
   return passwordHash === hash;
 };
-export const registerUser = async (email: string, password: string) => {
+export const registerUser = async (values: z.infer<typeof RegisterSchema>) => {
+  const validatedFields = RegisterSchema.safeParse(values);
+  if (!validatedFields.success) {
+    return {
+      error: "Có trường không hợp lệ",
+    };
+  }
+  const { email, password, confirmPassword, firstname, lastname, username } =
+    validatedFields.data;
+  if (confirmPassword !== password) {
+    return {
+      error: "Xác nhận mật khẩu không trùng khớp",
+    };
+  }
+  const existingUser = await prisma.user.findUnique({
+    where: {
+      email: email,
+    },
+  });
+  if (existingUser) {
+    return {
+      error: "Email đã được đăng kí cho tài khoản khác",
+    };
+  }
   const passwordHash = await hashPassword(password);
   try {
     const user = await prisma.user.create({
       data: {
         email,
         passwordHash,
+        username,
+        name: firstname + " " + lastname,
       },
     });
-
+    const token = await generateSessionToken();
+    const session = await createSession(token, user.id);
+    await setSessionTokenCookie(token, session.expiresAt);
     const safeUser = {
       ...user,
       passwordHash: undefined,
@@ -144,13 +174,22 @@ export const registerUser = async (email: string, password: string) => {
       error: null,
     };
   } catch (e) {
+    const message = e instanceof Error ? e.message : "Lỗi không xác định";
+    console.log(message);
     return {
       user: null,
-      error: "Failed to register user",
+      error: "Đăng kí người dùng thất bại",
     };
   }
 };
-export const loginUser = async (email: string, password: string) => {
+export const loginUser = async (values: z.infer<typeof LoginSchema>) => {
+  const validatedFields = LoginSchema.safeParse(values);
+  if (!validatedFields.success) {
+    return {
+      error: "Invalid fields",
+    };
+  }
+  const { email, password } = validatedFields.data;
   const user = await prisma.user.findUnique({
     where: {
       email: email,

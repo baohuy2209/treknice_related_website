@@ -5,7 +5,6 @@ import prisma from "@/lib/prisma";
 import { Product } from "@/sanity.types";
 import { urlFor } from "@/sanity/lib/image";
 import { revalidatePath } from "next/cache";
-import { cookies } from "next/headers";
 
 export const createCart = async () => {
   const { user } = await getCurrentSession();
@@ -232,9 +231,9 @@ export const addWinningItemToCart = async (
   const cart = await getOrCreateCart(cartId);
 
   const updatedCart = await updateCartItem(cart.id, product._id, {
-    title: `🎁 ${product.title} (Won)`,
+    title: `🎁 ${product.name} (Won)`,
     price: 0,
-    image: product.image ? urlFor(product.image).url() : "",
+    image: product.mainImage ? urlFor(product.mainImage).url() : "",
     quantity: 1,
   });
 
