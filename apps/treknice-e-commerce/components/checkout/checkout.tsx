@@ -122,14 +122,14 @@ const Checkout = () => {
             <div className="space-y-3 mb-6">
               {items.map((item) => (
                 <div
-                  key={item.product.id}
+                  key={item.product._id}
                   className="flex justify-between text-sm"
                 >
                   <span className="text-muted-foreground">
                     {item.product.name} × {item.quantity}
                   </span>
                   <span className="text-foreground">
-                    ${(item.product.price * item.quantity).toFixed(2)}
+                    ${(item.product.price! * item.quantity).toFixed(2)}
                   </span>
                 </div>
               ))}
