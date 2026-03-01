@@ -4,7 +4,11 @@ import { blockContentType } from "./blockContentType";
 import { categoryType } from "./categoryType";
 import { postType } from "./postType";
 import { authorType } from "./authorType";
-import { colorProductVariant, productType } from "./productType";
+import {
+  colorProductVariant,
+  productType,
+  sizeProductVariant,
+} from "./productType";
 import { productCategoryType } from "./productCategoryType";
 import { order, orderItem, shippingAddress } from "./order";
 
@@ -20,6 +24,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     shippingAddress,
     orderItem,
     order,
+    sizeProductVariant,
   ],
 };
 export function formatVND(amount: number | string): string {

@@ -18,6 +18,18 @@ export const colorProductVariant = defineType({
     }),
   ],
 });
+export const sizeProductVariant = defineType({
+  name: "sizeProductVariant",
+  title: "Size Product Variant",
+  type: "document",
+  fields: [
+    defineField({
+      name: "size",
+      title: "Size",
+      type: "string",
+    }),
+  ],
+});
 export const productType = defineType({
   name: "product",
   title: "Product",
@@ -64,6 +76,16 @@ export const productType = defineType({
       of: [
         defineArrayMember({
           type: "colorProductVariant",
+        }),
+      ],
+    }),
+    defineField({
+      name: "sizes",
+      type: "array",
+      of: [
+        defineArrayMember({
+          type: "reference",
+          to: { type: "sizeProductVariant" },
         }),
       ],
     }),

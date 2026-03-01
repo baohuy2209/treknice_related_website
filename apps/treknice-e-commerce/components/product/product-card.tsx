@@ -9,7 +9,7 @@ import { getCategoryNameById } from "@/actions/productCategory";
 interface ProductCardProps {
   product: Product;
 }
-export function isNewTag(publishedAt: string, days: number = 3): boolean {
+export function isNewTag(publishedAt: string, days: number = 1): boolean {
   if (!publishedAt) return false;
 
   const publishedDate = new Date(publishedAt).getTime();
@@ -35,7 +35,7 @@ export function calculateDiscountPrice(
   if (discountPercent >= 100) return 0;
 
   const discountAmount = (originalPrice * discountPercent) / 100;
-  return Math.round(originalPrice - discountAmount);
+  return Math.ceil(originalPrice - discountAmount);
 }
 export default function ProductCard({ product }: ProductCardProps) {
   const [categoryProduct, setCategoryProduct] = React.useState("");
@@ -51,13 +51,19 @@ export default function ProductCard({ product }: ProductCardProps) {
     >
       {/* Image */}
       <div className="relative aspect-square overflow-hidden bg-neutral-100">
-        <Image
-          src={urlFor(product.mainImage!).url()}
-          alt={product.name! ?? "Tên sản phẩm"}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
-        />
+        {product.mainImage ? (
+          <Image
+            src={urlFor(product.mainImage).url()}
+            alt={product.name! ?? "Tên sản phẩm"}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+        ) : (
+          <div className="flex max-h-40 w-full items-center justify-center bg-gray-100 dark:bg-gray-800">
+            <span className="text-sm text-gray-400">No Image</span>
+          </div>
+        )}
 
         {/* Badge NEW */}
         {isNewTag(product._createdAt) && (
@@ -91,17 +97,25 @@ export default function ProductCard({ product }: ProductCardProps) {
         </p>
 
         <div className="mt-4 flex items-center gap-3">
-          <span className="text-neutral-900 font-semibold text-base">
-            {calculateDiscountPrice(
-              product.price!,
-              product.discountPercents!,
-            ).toLocaleString("vi-VN")}
-            ₫
-          </span>
+          {product.discountPercents !== 0 && product.price ? (
+            <span className="text-neutral-900 font-semibold text-base">
+              {calculateDiscountPrice(
+                product.price!,
+                product.discountPercents!,
+              ).toLocaleString("vi-VN")}
+              ₫
+            </span>
+          ) : (
+            <span className="text-neutral-900 font-semibold text-base">
+              {product.price} ₫
+            </span>
+          )}
 
-          <span className="text-neutral-400 text-sm line-through">
-            {product.price!.toLocaleString("vi-VN")}₫
-          </span>
+          {product.discountPercents !== 0 && (
+            <span className="text-neutral-400 text-sm line-through">
+              {product.price!.toLocaleString("vi-VN")}₫
+            </span>
+          )}
         </div>
       </div>
     </Link>

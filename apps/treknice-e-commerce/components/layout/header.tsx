@@ -94,7 +94,7 @@ const Navbar = () => {
 
       {/* Mobile nav */}
       {mobileOpen && (
-        <div className="md:hidden bg-background border-b border-border animate-fade-in">
+        <div className="md:hidden bg-background border-b border-border animate-fade-in flex flex-col gap-4">
           <div className="container-page py-4 flex flex-col gap-3">
             {navLinks.map((link) => (
               <Link
@@ -110,6 +110,26 @@ const Navbar = () => {
                 {link.label}
               </Link>
             ))}
+          </div>
+          <div>
+            {user ? (
+              <UserAction user={user} />
+            ) : (
+              <div className="flex gap-1">
+                <Link
+                  href="/auth/sign-up"
+                  className="px-4 py-2 text-nowrap text-sm font-medium bg-[#f4f1ed] text-black rounded-lg hover:opacity-80 transition-colors shadow-sm"
+                >
+                  Đăng kí
+                </Link>
+                <Link
+                  href="/auth/sign-in"
+                  className="px-4 py-2 text-nowrap text-sm font-medium border-[#f4f1ed] border text-black rounded-lg hover:bg-[#f4f1ed] transition-colors shadow-sm"
+                >
+                  Đăng nhập
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       )}

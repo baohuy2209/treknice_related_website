@@ -1,17 +1,22 @@
 "use client";
+import { Product, SizeProductVariant } from "@/sanity.types";
 import React, { createContext, useContext, useState, useCallback } from "react";
-import type { Product } from "@/data/products";
 
 export interface CartItem {
-  product: Product;
+  product: Omit<Product, "sizes"> & {
+    sizes: SizeProductVariant[];
+  } | Product;
   quantity: number;
-  selectedVariants: Record<string, string>;
+  colorSelectedVariants?: Record<string, string>;
+  sizeSelectedVariants?: Record<string, string>;
 }
 
 interface CartContextType {
   items: CartItem[];
   addItem: (
-    product: Product,
+    product: Omit<Product, "sizes"> & {
+      sizes: SizeProductVariant[];
+    } | Product,
     quantity: number,
     variants: Record<string, string>,
   ) => void;
@@ -30,12 +35,18 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   const [items, setItems] = useState<CartItem[]>([]);
 
   const addItem = useCallback(
-    (product: Product, quantity: number, variants: Record<string, string>) => {
+    (
+      product: Omit<Product, "sizes"> & {
+        sizes: SizeProductVariant[];
+      } | Product,
+      quantity: number,
+      variants: Record<string, string>,
+    ) => {
       setItems((prev) => {
-        const existing = prev.find((i) => i.product.id === product.id);
+        const existing = prev.find((i) => i.product._id === product._id);
         if (existing) {
           return prev.map((i) =>
-            i.product.id === product.id
+            i.product._id === product._id
               ? {
                   ...i,
                   quantity: i.quantity + quantity,
@@ -51,16 +62,16 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 
   const removeItem = useCallback((productId: string) => {
-    setItems((prev) => prev.filter((i) => i.product.id !== productId));
+    setItems((prev) => prev.filter((i) => i.product._id !== productId));
   }, []);
 
   const updateQuantity = useCallback((productId: string, quantity: number) => {
     if (quantity <= 0) {
-      setItems((prev) => prev.filter((i) => i.product.id !== productId));
+      setItems((prev) => prev.filter((i) => i.product._id !== productId));
       return;
     }
     setItems((prev) =>
-      prev.map((i) => (i.product.id === productId ? { ...i, quantity } : i)),
+      prev.map((i) => (i.product._id === productId ? { ...i, quantity } : i)),
     );
   }, []);
 
@@ -68,7 +79,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const totalItems = items.reduce((sum, i) => sum + i.quantity, 0);
   const totalPrice = items.reduce(
-    (sum, i) => sum + i.product.price * i.quantity,
+    (sum, i) => sum + i.product.price! * i.quantity,
     0,
   );
 

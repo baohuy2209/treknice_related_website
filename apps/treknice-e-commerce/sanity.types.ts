@@ -13,6 +13,15 @@
  */
 
 // Source: schema.json
+export type SizeProductVariant = {
+  _id: string;
+  _type: "sizeProductVariant";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  size?: string;
+};
+
 export type Order = {
   _id: string;
   _type: "order";
@@ -101,6 +110,13 @@ export type Product = {
       _key: string;
     } & ColorProductVariant
   >;
+  sizes?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "sizeProductVariant";
+  }>;
   discountPercents?: number;
   mainImage?: {
     asset?: {
@@ -396,6 +412,7 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | SizeProductVariant
   | Order
   | ShippingAddress
   | OrderItem

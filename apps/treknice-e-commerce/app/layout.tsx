@@ -9,7 +9,6 @@ import { Toaster } from "sonner";
 import Script from "next/script";
 import { getCurrentSession } from "@/actions/auth";
 import { SessionProvider } from "@/contexts/session-context";
-import Cart from "@/components/cart/cart";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -32,7 +31,7 @@ export default async function RootLayout({
 }>) {
   const { user } = await getCurrentSession();
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Google Analytics 4 */}
         <Script
@@ -60,7 +59,6 @@ export default async function RootLayout({
               {children}
               <Footer />
               <Toaster />
-              <Cart />
             </CartProvider>
           </TooltipProvider>
         </SessionProvider>
