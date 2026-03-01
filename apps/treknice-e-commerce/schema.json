@@ -1255,6 +1255,20 @@
         },
         "optional": true
       },
+      "subDescription": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "timeRead": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "number"
+        },
+        "optional": true
+      },
       "author": {
         "type": "objectAttribute",
         "value": {

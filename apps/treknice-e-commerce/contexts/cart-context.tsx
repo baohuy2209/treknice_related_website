@@ -3,9 +3,11 @@ import { Product, SizeProductVariant } from "@/sanity.types";
 import React, { createContext, useContext, useState, useCallback } from "react";
 
 export interface CartItem {
-  product: Omit<Product, "sizes"> & {
-    sizes: SizeProductVariant[];
-  } | Product;
+  product:
+    | (Omit<Product, "sizes"> & {
+        sizes: SizeProductVariant[];
+      })
+    | Product;
   quantity: number;
   colorSelectedVariants?: Record<string, string>;
   sizeSelectedVariants?: Record<string, string>;
@@ -14,11 +16,14 @@ export interface CartItem {
 interface CartContextType {
   items: CartItem[];
   addItem: (
-    product: Omit<Product, "sizes"> & {
-      sizes: SizeProductVariant[];
-    } | Product,
+    product:
+      | (Omit<Product, "sizes"> & {
+          sizes: SizeProductVariant[];
+        })
+      | Product,
     quantity: number,
     variants: Record<string, string>,
+    sizeVariants: Record<string, string>,
   ) => void;
   removeItem: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
@@ -36,11 +41,14 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const addItem = useCallback(
     (
-      product: Omit<Product, "sizes"> & {
-        sizes: SizeProductVariant[];
-      } | Product,
+      product:
+        | (Omit<Product, "sizes"> & {
+            sizes: SizeProductVariant[];
+          })
+        | Product,
       quantity: number,
       variants: Record<string, string>,
+      sizeVariants: Record<string, string>,
     ) => {
       setItems((prev) => {
         const existing = prev.find((i) => i.product._id === product._id);
@@ -51,6 +59,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
                   ...i,
                   quantity: i.quantity + quantity,
                   selectedVariants: variants,
+                  sizeSelectedVariants: sizeVariants,
                 }
               : i,
           );

@@ -43,7 +43,7 @@ export default function ProductCard({ product }: ProductCardProps) {
     getCategoryNameById(product.categories?.[0]?._ref).then((res) => {
       setCategoryProduct(res.title);
     });
-  }, []);
+  }, [product]);
   return (
     <Link
       href={`/products/${product._id}`}
@@ -107,7 +107,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             </span>
           ) : (
             <span className="text-neutral-900 font-semibold text-base">
-              {product.price} ₫
+              {product.price!.toLocaleString("vi-VN")} ₫
             </span>
           )}
 

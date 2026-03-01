@@ -4,13 +4,14 @@ import FeaturedCollections from "@/components/home/featured-collection";
 import HeroSection from "@/components/home/hero-section";
 import NewsletterSection from "@/components/home/newsletter-section";
 import TestimonialSection from "@/components/home/testimonial-section";
+import { Product } from "@/sanity.types";
 
-const HomePage = () => {
+const HomePage = ({ products }: { products: Product[] }) => {
   return (
     <main>
       <HeroSection />
       <FeaturedCollections />
-      <BestSeller />
+      <BestSeller products={products} />
       <AboutSection />
       <TestimonialSection />
       <NewsletterSection />

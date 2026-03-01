@@ -19,7 +19,6 @@ import type {
   PortableTextTypeComponentProps,
 } from "@portabletext/react";
 import type { TypedObject } from "sanity";
-import { Button } from "@/components/ui/button";
 type SanityImageValue = {
   asset?: {
     _ref?: string;
@@ -44,9 +43,16 @@ export interface safeProduct {
   };
 }
 export interface ProductDetailProps {
-  product: Omit<Product, "sizes"> & {
-    sizes: SizeProductVariant[];
-  } | Product;
+  product:
+    | (Omit<Product, "sizes"> & {
+        sizes: SizeProductVariant[];
+      })
+    | Product;
+}
+function isSizeDoc(
+  size: SizeProductVariant | { _ref: string },
+): size is SizeProductVariant {
+  return "_id" in size;
 }
 export const components: PortableTextComponents = {
   types: {
@@ -160,7 +166,7 @@ export const components: PortableTextComponents = {
           : undefined;
 
       return (
-        <h1 className="text-3xl font-bold" id={id}>
+        <h1 className="text-3xl font-bold mb-4" id={id}>
           {children}
         </h1>
       );
@@ -173,7 +179,7 @@ export const components: PortableTextComponents = {
           : undefined;
 
       return (
-        <h2 className="text-2xl font-bold" id={id}>
+        <h2 className="text-2xl font-bold mb-3" id={id}>
           {children}
         </h2>
       );
@@ -186,7 +192,7 @@ export const components: PortableTextComponents = {
           : undefined;
 
       return (
-        <h3 className="text-xl font-bold" id={id}>
+        <h3 className="text-xl font-bold mb-2" id={id}>
           {children}
         </h3>
       );
@@ -199,7 +205,7 @@ export const components: PortableTextComponents = {
           : undefined;
 
       return (
-        <h4 className="text-lg font-bold" id={id}>
+        <h4 className="text-lg font-bold mb-1" id={id}>
           {children}
         </h4>
       );
@@ -416,24 +422,26 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   Kích cỡ
                 </label>
                 <div className="flex flex-row flex-wrap gap-2 mb-4">
-                  {product.sizes!.map((size) => (
-                    <button
-                      key={size._id}
-                      onClick={() =>
-                        setSizeSelectedVariants((prev) => ({
-                          ...prev,
-                          sizes: size._id!,
-                        }))
-                      }
-                      className={`px-4 py-2 rounded-full text-sm border transition ${
-                        sizeSelectedVariants["sizes"] === size._id
-                          ? "border-[#4d7c5a] bg-[#4d7c5a]/10 text-[#4d7c5a]"
-                          : "border-[#ded8d2] hover:border-[#4d7c5a]"
-                      }`}
-                    >
-                      {size.size}
-                    </button>
-                  ))}
+                  {product.sizes!.map((size) =>
+                    isSizeDoc(size) ? (
+                      <button
+                        key={size._id}
+                        onClick={() =>
+                          setSizeSelectedVariants((prev) => ({
+                            ...prev,
+                            sizes: size._id!,
+                          }))
+                        }
+                        className={`px-4 py-2 rounded-full text-sm border transition ${
+                          sizeSelectedVariants["sizes"] === size._id
+                            ? "border-[#4d7c5a] bg-[#4d7c5a]/10 text-[#4d7c5a]"
+                            : "border-[#ded8d2] hover:border-[#4d7c5a]"
+                        }`}
+                      >
+                        {size.size}
+                      </button>
+                    ) : null,
+                  )}
                 </div>
               </>
             )}

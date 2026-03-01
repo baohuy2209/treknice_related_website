@@ -59,9 +59,9 @@ const Cart = () => {
                   <p className="text-sm text-muted-foreground mt-1">
                     {item.product.subDescription}
                   </p>
-                  {Object.entries(item.selectedVariants).length > 0 && (
+                  {Object.entries(item.colorSelectedVariants!).length > 0 && (
                     <p className="text-xs text-muted-foreground mt-1">
-                      {Object.entries(item.selectedVariants)
+                      {Object.entries(item.colorSelectedVariants!)
                         .map(([k, v]) => `${k}: ${v}`)
                         .join(" · ")}
                     </p>

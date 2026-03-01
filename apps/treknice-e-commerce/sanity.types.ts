@@ -220,6 +220,8 @@ export type Post = {
   _rev: string;
   title?: string;
   slug?: Slug;
+  subDescription?: string;
+  timeRead?: number;
   author?: {
     _ref: string;
     _type: "reference";

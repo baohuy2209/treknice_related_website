@@ -22,3 +22,12 @@ export const getProductById = async (id: string) => {
   const product = await client.fetch(query);
   return product;
 };
+
+export const getTopSellingProducts = async () => {
+  const query = `
+    *[_type == "product"]
+      | order(num_sold desc)
+      [0...3]
+  `;
+  return await client.fetch(query);
+};

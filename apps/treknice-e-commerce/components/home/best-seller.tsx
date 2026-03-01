@@ -1,12 +1,10 @@
 // components/BestSellers.tsx
 
 import Link from "next/link";
-import { products } from "@/data/products";
 import ProductCard from "@/components/product/product-card";
+import { Product } from "@/sanity.types";
 
-export default function BestSellers() {
-  const bestSellers = products.filter((p) => p.isBestSeller).slice(0, 5);
-
+export default function BestSellers({ products }: { products: Product[] }) {
   return (
     <section className="py-20 bg-neutral-100">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -31,8 +29,8 @@ export default function BestSellers() {
 
         {/* Products Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {bestSellers.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          {products.map((product) => (
+            <ProductCard key={product._id} product={product} />
           ))}
         </div>
 
