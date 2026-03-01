@@ -29,6 +29,10 @@ export const productType = defineType({
       type: "string",
     }),
     defineField({
+      name: "subDescription",
+      type: "string",
+    }),
+    defineField({
       name: "slug",
       type: "slug",
       options: {

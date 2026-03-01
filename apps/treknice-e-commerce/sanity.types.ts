@@ -13,6 +13,53 @@
  */
 
 // Source: schema.json
+export type Order = {
+  _id: string;
+  _type: "order";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  orderNumber?: string;
+  orderDate?: string;
+  customerId?: string;
+  customerName?: string;
+  customerEmail?: string;
+  stripeCustomerId?: string;
+  stripeCheckoutSessionId?: string;
+  stripePaymentIntentId?: string;
+  totalPrice?: number;
+  shippingAddress?: ShippingAddress;
+  orderItems?: Array<
+    {
+      _key: string;
+    } & OrderItem
+  >;
+  status?: "PROCESSING" | "SHIPPED" | "DELIVERED" | "CANCELLED";
+};
+
+export type ShippingAddress = {
+  _type: "shippingAddress";
+  name?: string;
+  line1?: string;
+  line2?: string;
+  city?: string;
+  state?: string;
+  postalCode?: string;
+  country?: string;
+};
+
+export type OrderItem = {
+  _type: "orderItem";
+  product?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "product";
+  };
+  quantity?: number;
+  price?: number;
+};
+
 export type ColorProductVariant = {
   _type: "colorProductVariant";
   colors?: string;
@@ -43,6 +90,7 @@ export type Product = {
   _updatedAt: string;
   _rev: string;
   name?: string;
+  subDescription?: string;
   slug?: Slug;
   price?: number;
   num_inventory?: number;
@@ -348,6 +396,9 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | Order
+  | ShippingAddress
+  | OrderItem
   | ColorProductVariant
   | ProductCategory
   | Slug

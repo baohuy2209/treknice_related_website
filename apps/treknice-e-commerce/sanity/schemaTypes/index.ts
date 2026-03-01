@@ -6,6 +6,7 @@ import { postType } from "./postType";
 import { authorType } from "./authorType";
 import { colorProductVariant, productType } from "./productType";
 import { productCategoryType } from "./productCategoryType";
+import { order, orderItem, shippingAddress } from "./order";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -16,6 +17,9 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     productType,
     productCategoryType,
     colorProductVariant,
+    shippingAddress,
+    orderItem,
+    order,
   ],
 };
 export function formatVND(amount: number | string): string {

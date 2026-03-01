@@ -9,6 +9,7 @@ import { Toaster } from "sonner";
 import Script from "next/script";
 import { getCurrentSession } from "@/actions/auth";
 import { SessionProvider } from "@/contexts/session-context";
+import Cart from "@/components/cart/cart";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -59,6 +60,7 @@ export default async function RootLayout({
               {children}
               <Footer />
               <Toaster />
+              <Cart />
             </CartProvider>
           </TooltipProvider>
         </SessionProvider>

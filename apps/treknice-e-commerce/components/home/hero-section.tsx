@@ -9,7 +9,7 @@ export default function Hero() {
       <div className="absolute inset-0">
         <Image
           src="/hero-section.jpg"
-          alt="TrekNice - Phụ kiện đi phượt chất lượng"
+          alt="TrekNice - Phụ kiện Trekking chất lượng"
           fill
           priority
           className="object-cover"
@@ -24,7 +24,7 @@ export default function Hero() {
         </h1>
 
         <p className="text-lg md:text-xl text-white/90 mb-10 leading-relaxed">
-          TrekNice mang đến phụ kiện đi phượt bền bỉ, an toàn và sẵn sàng đồng
+          TrekNice mang đến phụ kiện treking bền bỉ, an toàn và sẵn sàng đồng
           hành cùng bạn trên mọi cung đường – từ rừng núi hoang sơ đến những
           chuyến đi biển đầy nắng gió.
         </p>
