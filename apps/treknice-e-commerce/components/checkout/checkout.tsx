@@ -137,7 +137,7 @@ const Checkout = () => {
 
             <div className="border-t border-border pt-3 flex justify-between text-foreground font-medium">
               <span>Tổng cộng</span>
-              <span>${totalPrice.toFixed(2)}</span>
+              <span>{totalPrice.toLocaleString("")} VNĐ</span>
             </div>
 
             <button type="submit" className="btn-primary w-full mt-6">
