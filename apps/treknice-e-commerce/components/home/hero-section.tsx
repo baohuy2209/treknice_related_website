@@ -20,13 +20,14 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center text-white">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-          Chinh Phục Mọi Hành Trình
+          Sống Nice, Trek Mai
         </h1>
 
         <p className="text-lg md:text-xl text-white/90 mb-10 leading-relaxed">
-          TrekNice mang đến phụ kiện treking bền bỉ, an toàn và sẵn sàng đồng
-          hành cùng bạn trên mọi cung đường – từ rừng núi hoang sơ đến những
-          chuyến đi biển đầy nắng gió.
+          Chuẩn bị gọn nhẹ cho mọi chuyến đi – từ trekking rừng núi, cắm trại
+          cuối tuần đến roadtrip ngẫu hứng. TrekNice mang đến phụ kiện đủ bền –
+          đủ tiện – đủ đẹp, giúp bạn tự tin trải nghiệm và lưu giữ trọn vẹn vibe
+          chuyến đi.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

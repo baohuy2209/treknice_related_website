@@ -58,8 +58,8 @@ const BlogDetail = ({ post }: BlogDetailProps) => {
     );
   }
   return (
-    <main className="min-h-screen">
-      <div className="container-page py-6">
+    <main className="min-h-screen py-4">
+      <div className="container-page py-4">
         <Link
           href="/blog"
           className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"

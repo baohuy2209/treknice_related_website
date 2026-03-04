@@ -28,13 +28,13 @@ export default function Footer() {
             </p>
 
             <div className="flex gap-4 mt-6 text-neutral-500">
-              <Link href="#">
+              <Link href="https://www.instagram.com/trekn_ice12/">
                 <Instagram
                   size={18}
                   className="hover:text-emerald-600 transition"
                 />
               </Link>
-              <Link href="#">
+              <Link href="https://www.facebook.com/treknice.official">
                 <Facebook
                   size={18}
                   className="hover:text-emerald-600 transition"
@@ -76,26 +76,66 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/products?category=Bath+%26+Body"
+                  href="/products?category=91c4c41e-9f73-4bc0-8a79-c812a58dee10"
                   className="hover:text-neutral-900 transition"
                 >
-                  Balo & túi chống nước
+                  Balo
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/products?category=Home"
+                  href="/products?category=91c4c41e-9f73-4bc0-8a79-c812a58dee10"
                   className="hover:text-neutral-900 transition"
                 >
-                  Phụ kiện đi kèm
+                  Áo
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/products?category=Accessories"
+                  href="/products?category=17a187b2-ac73-49ea-961a-37953048deab"
                   className="hover:text-neutral-900 transition"
                 >
-                  Phụ kiện
+                  Quần
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?category=d089276b-8389-4c6d-af62-f99252aaf249"
+                  className="hover:text-neutral-900 transition"
+                >
+                  Giày dép
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?category=5b4f4aaa-21b1-44b6-ba9a-a00105a34a9c"
+                  className="hover:text-neutral-900 transition"
+                >
+                  Mũ
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?category=5b4f4aaa-21b1-44b6-ba9a-a00105a34a9c"
+                  className="hover:text-neutral-900 transition"
+                >
+                  Tất
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?category=09b9dec6-f6af-432e-9179-4570dbb047de"
+                  className="hover:text-neutral-900 transition"
+                >
+                  Kính
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/products?category=02a0a372-dfa2-4e94-8f71-132767343597"
+                  className="hover:text-neutral-900 transition"
+                >
+                  Phụ kiện khác
                 </Link>
               </li>
             </ul>

@@ -1,4 +1,4 @@
-import { getPostById } from "@/actions/post";
+import { getPostBySlug } from "@/actions/post";
 import BlogDetail from "@/components/blog/blog-detail";
 
 async function BlogDetailPage({
@@ -7,7 +7,7 @@ async function BlogDetailPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const post = await getPostById(slug);
+  const post = await getPostBySlug(slug);
   return <BlogDetail post={post} />;
 }
 export default BlogDetailPage;

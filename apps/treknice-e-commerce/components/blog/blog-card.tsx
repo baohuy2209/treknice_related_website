@@ -34,7 +34,7 @@ function BlogCard({ post }: BlogCardProps) {
     });
   }, [post]);
   return (
-    <Link key={post._id} href={`/blog/${post._id}`} className="group">
+    <Link key={post._id} href={`/blog/${post.slug?.current}`} className="group">
       <div className="rounded-2xl overflow-hidden aspect-3/2 mb-4 bg-white">
         {post.mainImage && (
           <Image
