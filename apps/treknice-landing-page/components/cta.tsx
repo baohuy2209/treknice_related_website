@@ -27,8 +27,10 @@ export default function CallToAction() {
             size="lg"
             className="group relative overflow-hidden bg-black px-8 py-6 text-lg font-semibold text-white shadow-2xl transition-all hover:shadow-black/50 hover:scale-105"
           >
-            <Backpack className="mr-2 h-5 w-5 transition-transform group-hover:rotate-12" />
-            Mua Sắm Ngay
+            <Link href="https://treknice-e-commerce.vercel.app/products">
+              <Backpack className="mr-2 h-5 w-5 transition-transform group-hover:rotate-12" />
+              Mua Sắm Ngay
+            </Link>
           </Button>
 
           <Button
@@ -36,8 +38,10 @@ export default function CallToAction() {
             variant="outline"
             className="border-2 border-white/30 bg-white/10 px-8 py-6 text-lg font-semibold text-black backdrop-blur-sm transition-all hover:bg-white/20 hover:scale-105 shadow-2xl"
           >
-            <Mountain className="mr-2 h-5 w-5" />
-            Xem Sản Phẩm
+            <Link href="https://treknice-e-commerce.vercel.app/products">
+              <Mountain className="mr-2 h-5 w-5" />
+              Ghé qua cửa hàng TrekNice
+            </Link>
           </Button>
         </div>
       </div>
