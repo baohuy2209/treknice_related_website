@@ -53,35 +53,37 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <Link
-            href="/cart"
-            className="relative p-2 text-foreground hover:text-primary transition-colors"
-          >
-            <ShoppingBag size={22} />
-            {totalItems > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 w-5 h-5 rounded-full bg-accent text-accent-foreground text-xs flex items-center justify-center font-medium">
-                {totalItems}
-              </span>
+          <div className="md:flex hidden gap-2">
+            <Link
+              href="/cart"
+              className="relative p-2 text-foreground hover:text-primary transition-colors"
+            >
+              <ShoppingBag size={22} />
+              {totalItems > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 w-5 h-5 rounded-full bg-accent text-accent-foreground text-xs flex items-center justify-center font-medium">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+            {user ? (
+              <UserAction user={user} />
+            ) : (
+              <div className="flex gap-1">
+                <Link
+                  href="/auth/sign-up"
+                  className="px-4 py-2 text-nowrap text-sm font-medium bg-[#f4f1ed] text-black rounded-lg hover:opacity-80 transition-colors shadow-sm"
+                >
+                  Đăng kí
+                </Link>
+                <Link
+                  href="/auth/sign-in"
+                  className="px-4 py-2 text-nowrap text-sm font-medium border-[#f4f1ed] border text-black rounded-lg hover:bg-[#f4f1ed] transition-colors shadow-sm"
+                >
+                  Đăng nhập
+                </Link>
+              </div>
             )}
-          </Link>
-          {user ? (
-            <UserAction user={user} />
-          ) : (
-            <div className="flex gap-1">
-              <Link
-                href="/auth/sign-up"
-                className="px-4 py-2 text-nowrap text-sm font-medium bg-[#f4f1ed] text-black rounded-lg hover:opacity-80 transition-colors shadow-sm"
-              >
-                Đăng kí
-              </Link>
-              <Link
-                href="/auth/sign-in"
-                className="px-4 py-2 text-nowrap text-sm font-medium border-[#f4f1ed] border text-black rounded-lg hover:bg-[#f4f1ed] transition-colors shadow-sm"
-              >
-                Đăng nhập
-              </Link>
-            </div>
-          )}
+          </div>
           <button
             className="md:hidden p-2 text-foreground"
             onClick={() => setMobileOpen(!mobileOpen)}
@@ -111,7 +113,18 @@ const Navbar = () => {
               </Link>
             ))}
           </div>
-          <div>
+          <div className="flex flex-row gap-2 items-center justify-center">
+            <Link
+              href="/cart"
+              className="relative p-2 text-foreground hover:text-primary transition-colors"
+            >
+              <ShoppingBag size={22} />
+              {totalItems > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 w-5 h-5 rounded-full bg-accent text-accent-foreground text-xs flex items-center justify-center font-medium">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
             {user ? (
               <UserAction user={user} />
             ) : (
