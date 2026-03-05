@@ -117,7 +117,7 @@ export function MaterialsSection() {
         <div className="absolute inset-0 bg-black/20" />
       </div>
 
-      <div className="absolute top-[120px] left-0 right-0 z-10">
+      <div className="absolute top-30 left-0 right-0 z-10">
         <div className="container-custom text-white">
           <Reveal>
             <div>
