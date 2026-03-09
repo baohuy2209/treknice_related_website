@@ -76,7 +76,7 @@ export function HeroSection() {
       >
         <div className="container-custom text-center text-white">
           <Reveal>
-            <h1 className="text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold leading-none tracking-tight mb-6">
+            <h1 className="text-xl md:text-5xl font-bold leading-none tracking-tight mb-6">
               <AnimatedText text="Sống chậm giữa núi rừng" delay={0.5} />
               <br />
               <span className="italic font-light">
@@ -118,7 +118,7 @@ export function HeroSection() {
           </Reveal> */}
           <Reveal delay={0.2}>
             <motion.p
-              className="text-lg md:text-xl text-white/90 mb-12 leading-relaxed"
+              className="text-md md:text-lg text-white/90 mb-12 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{

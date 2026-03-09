@@ -11,7 +11,7 @@ export default function Blog({ listBlog }: BlogInterface) {
       <section className="py-20 border-b border-[#e7e2dc] text-center px-6">
         <h1 className="text-4xl font-serif text-[#2f2a25]">TrekNice Journal</h1>
         <p className="mt-4 text-[#7a6f66] max-w-xl mx-auto">
-          Kinh nghiệm đi phượt, review phụ kiện và những câu chuyện trên hành
+          Kinh nghiệm trekking, review phụ kiện và những câu chuyện trên hành
           trình khám phá.
         </p>
       </section>
