@@ -14,7 +14,7 @@ jobs:
         run: npm install -g @sanity/cli
 
       - name: Move to Sanity project
-        run: cd apps/client-stackra # 👈 sửa đúng path của bạn
+        run: cd apps/treknice-e-commerce # 👈 sửa đúng path của bạn
 
       - name: Export dataset
         run: sanity dataset export production backup.tar.gz --project-id vz9qs0sm --overwrite
